@@ -1,0 +1,42 @@
+.titleCards{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+.titleCards h2{
+    margin-bottom: 8px;
+}
+.card-list{
+    display: flex;
+    gap: 10px;
+    overflow-x: scroll;
+    padding: 20px 0;
+    mask-image: linear-gradient(to left, transparent,black 25% );
+    -webkit-mask-image: linear-gradient(to left, transparent,black 5%, black 90%, transparent);
+}
+.card-list img{
+    width: 240px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.card-list img:hover{
+    transform: scale(1.05);
+}
+.card-list::-webkit-scrollbar{
+    display: none;
+}
+.card-list .card{
+    position: relative;
+}
+.card-list .card p{
+    text-decoration: none;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+}
+
