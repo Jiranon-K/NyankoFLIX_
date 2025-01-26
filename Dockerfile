@@ -1,8 +1,19 @@
 FROM node:latest
+
 WORKDIR /app
-COPY package*.json .
+
+
+ARG VITE_TMDB_API_KEY
+ENV VITE_TMDB_API_KEY=$VITE_TMDB_API_KEY
+
+COPY package*.json ./
 RUN npm install --force
+
 COPY . .
-EXPOSE  3999
+
+
 RUN npm run build
-CMD [ "npm", "run", "preview" ] 
+
+EXPOSE 3999
+
+CMD ["npm", "run", "preview"]
