@@ -14,13 +14,13 @@ const Player = () => {
 
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: `Bearer ${API_KEY}`
-  }
-};
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${API_KEY}`
+    }
+  };
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/tv/${id}/videos?language=ja-JP`, options)
@@ -39,6 +39,7 @@ const options = {
     <div className="player">
       <img
         src={back_arrow}
+        alt="Back"
         onClick={() => {
           navigate(-1);
         }}
@@ -51,11 +52,10 @@ const options = {
           src={`https://www.youtube.com/embed/${apiData.key}`}
           title={apiData.name || 'trailer'}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          frameBorder="0"
           allowFullScreen
         ></iframe>
       ) : (
-        <p>Loading trailer...</p>
+        <p>Loading...</p>
       )}
     </div>
   );

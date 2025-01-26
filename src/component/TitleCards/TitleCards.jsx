@@ -26,7 +26,7 @@ const TitleCards = ({ title, category }) => {
   };
 
   const handleScroll = (direction) => {
-    const scrollAmount = 400; // ขนาดการเลื่อนต่อครั้ง
+    const scrollAmount = 400; 
     const container = cardsRef.current;
     if (direction === 'left') {
       container.scrollLeft -= scrollAmount;
@@ -41,7 +41,13 @@ const TitleCards = ({ title, category }) => {
       options
     )
       .then((res) => res.json())
-      .then((res) => setApiData(res.results))
+      .then((res) => {
+        if (res.results) {
+          setApiData(res.results);
+        } else {
+          console.error('No results found.');
+        }
+      })
       .catch((err) => console.error(err));
 
     const currentRef = cardsRef.current;
