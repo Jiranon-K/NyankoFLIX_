@@ -1,13 +1,15 @@
-.navbar{
-    width: 100%;
-    padding: 20px 6%;
-    display: flex;
-    justify-content: space-between;
-    position: fixed;
-    font-size: 14px;
-    color: #e5e5e5;
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), 10% ,transparent);
-    z-index: 1;
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+  background: transparent;
 }
 .navbar-left{
     gap: 50px;
@@ -16,6 +18,9 @@
 }
 .navbar-left img{
     width: 150px;
+}
+.navbar-left img.logo {
+    width: clamp(100px, 15vw, 150px);
 }
 .navbar-left ul{
     display: flex;
@@ -66,7 +71,84 @@
 .navbar-profile:hover .dropdown{
     display: block;
 }
-.nav-dark{
-    background: linear-gradient(to top, transparent,black  );
-    
+.nav-dark {
+  background: #141414;
+}
+
+.menu-icon {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.menu-icon .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #e5e5e5;
+    transition: 0.3s;
+}
+
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar ul li a:hover {
+  color: #e50914;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+    .navbar-left ul li {
+        font-size: clamp(12px, 1.5vw, 14px);
+    }
+    .navbar-left {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-icon {
+        display: flex;
+    }
+
+    .navbar-left ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .navbar-left ul.show-menu {
+        display: flex;
+    }
+
+    .navbar-left ul li {
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .navbar-right {
+        gap: 15px;
+    }
+
+    .navbar-right .icon {
+        width: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px 4%;
+    }
+
+    .navbar-right .profile {
+        width: 30px;
+    }
 }

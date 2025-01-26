@@ -1,67 +1,108 @@
-.hero{
+.hero {
     position: relative;
-}
-.banner-img{
     width: 100%;
-    mask-image: linear-gradient(to top, transparent,black 80%);
-    -webkit-mask-image: linear-gradient(to top, transparent,black 80%);
+    height: 100vh;
+}
+
+.banner-img {
+    width: 100%;
     height: 100vh;
     object-fit: cover;
+    mask-image: linear-gradient(to top, transparent, black 80%);
+    -webkit-mask-image: linear-gradient(to top, transparent, black 80%);
     z-index: -1;
-    
 }
-.hero-caption{
+
+.hero-caption {
     position: absolute;
     width: 100%;
-    padding-left: 6%;
-    padding-right: 6%;
-    bottom: 0;
+    padding: 0 clamp(16px, 6%, 60px);
+    bottom: clamp(30px, 8vh, 100px);
 }
-.caption-img{
+
+.caption-img {
     width: 90%;
     max-width: 420px;
-    margin-bottom: 30px;
+    margin-bottom: clamp(15px, 3vh, 30px);
 }
-.hero-caption p{
+
+.hero-caption p {
     max-width: 700px;
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: clamp(14px, 2vw, 16px);
+    margin-bottom: clamp(15px, 3vh, 20px);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
-.hero-btns{
+
+.hero-btns {
     display: flex;
-    gap: 10px;
-    margin-bottom: 50px;
+    gap: clamp(8px, 2vw, 10px);
+    margin-bottom: clamp(30px, 5vh, 50px);
+    flex-wrap: wrap;
 }
-.hero-btns .btn img{
-    width: 25px;
+
+.hero-btns .btn img {
+    width: clamp(16px, 2vw, 20px);
+    height: auto;
 }
-.hero-btns .btn{
+
+.hero-btns .btn {
     border: 0;
     outline: 0;
-    padding: 8px 20px;
+    padding: clamp(8px, 2vw, 12px) clamp(16px, 3vw, 24px);
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    font-size: 15px;
+    gap: 8px;
+    font-size: clamp(14px, 1.5vw, 16px);
     font-weight: 600;
     background: white;
     border-radius: 4px;
     cursor: pointer;
 }
-.hero-btns .btn.dark-btn{
+
+.hero-btns .btn.dark-btn {
     background: #333;
     color: white;
 }
-.hero-btns .btn:hover{
+
+.hero-btns .btn:hover {
     background: #ffffffbf;
 }
-.hero-btns .btn.dark-btn:hover{
+
+.hero-btns .btn.dark-btn:hover {
     background: #6d6d6e66;
 }
-.more-cards{
+
+.more-cards {
     padding: 6%;
     padding-top: 0;
-    
-    
-   
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .hero-caption {
+        bottom: 20px;
+    }
+
+    .caption-img {
+        max-width: 300px;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-caption p {
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
 }

@@ -12,13 +12,15 @@ const Player = () => {
     key: '',
   });
 
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'YOUR API KEY',
-    },
-  };
+  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
+const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: `Bearer ${API_KEY}`
+  }
+};
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/tv/${id}/videos?language=ja-JP`, options)

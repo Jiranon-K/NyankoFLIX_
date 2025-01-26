@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../../assets/logo.png';
-import search_icon from '../../assets/search_icon.svg'; 
 import bell_icon from '../../assets/bell_icon.svg';
 import profile_img from '../../assets/profile_img.png';
 
@@ -9,6 +9,7 @@ import profile_img from '../../assets/profile_img.png';
 function Navbar() {  
 
   const NavRef = useRef();
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,17 +32,21 @@ function Navbar() {
     <div ref={NavRef} className='navbar'>
       <div className="navbar-left">
         <img src={logo} alt="" className='icon' />
-        <ul>
-          <li>หน้าหลัก</li>
-          <li>รายการทีวี</li>
-          <li>ภาพยนต์</li>
-          <li>มาใหม่และกำลังฮิต</li>
-          <li>รายการของฉัน</li>
-          <li>เลือกดูตามภาษา</li>
+        <div className="menu-icon" onClick={() => setShowMenu(!showMenu)}>
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+        </div>
+        <ul className={showMenu ? 'show-menu' : ''}>
+          <li><Link to="/">หน้าหลัก</Link></li>
+          <li><Link to="/Tvshows">รายการทีวี</Link></li>
+          <li><Link to="/movies">ภาพยนต์</Link></li>
+          <li><Link to="/trending">มาใหม่และกำลังฮิต</Link></li>
+          <li><Link to="/mylist">รายการของฉัน</Link></li>
+          <li><Link to="/language">เลือกดูตามภาษา</Link></li>
         </ul>
       </div>
       <div className="navbar-right">
-        <img src={search_icon} alt="Search" className='icon' /> 
         <img src={bell_icon} alt="Notifications" className='icon' />
         <div className="navbar-profile">
           <img src={profile_img} alt="Profile" className='profile' />
@@ -51,4 +56,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;  
+export default Navbar;
