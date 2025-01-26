@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Player.css';
 import back_arrow from '../../assets/back_arrow_icon.png';
 import { useNavigate, useParams } from 'react-router-dom';
+import { options } from '../../services/api';
 
 const Player = () => {
   const { id } = useParams();
@@ -11,16 +12,6 @@ const Player = () => {
     name: '',
     key: '',
   });
-
-  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: `Bearer ${API_KEY}`
-    }
-  };
 
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/tv/${id}/videos?language=ja-JP`, options)
