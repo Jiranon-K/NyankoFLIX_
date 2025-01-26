@@ -2,6 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import './TitleCards.css';
 import { Link } from 'react-router-dom';
 
+const LoadingSkeleton = () => (
+  <div className="card loading-skeleton">
+    <div className="skeleton-animate"></div>
+  </div>
+);
+
 const TitleCards = ({ title, category }) => {
   const [apiData, setApiData] = useState([]);
   const [showControls, setShowControls] = useState(false);
@@ -25,8 +31,9 @@ const TitleCards = ({ title, category }) => {
     cardsRef.current.scrollLeft += scrollAmount * scrollSpeed;
   };
 
+  
   const handleScroll = (direction) => {
-    const scrollAmount = 400; 
+    const scrollAmount = 300; 
     const container = cardsRef.current;
     if (direction === 'left') {
       container.scrollLeft -= scrollAmount;
@@ -64,39 +71,48 @@ const TitleCards = ({ title, category }) => {
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
     >
-      <h2>{title ? title : 'Anime Tv Series'}</h2>
+      <h2>{title || 'Anime Series'}</h2>
       <div className='slider-container'>
-        <button 
-          className={`slider-control left ${showControls ? 'show' : ''}`}
-          onClick={() => handleScroll('left')}
-        >
-          ‹
-        </button>
+        {showControls && (
+          <>
+            <button 
+              className="slider-control left"
+              onClick={() => handleScroll('left')}
+              aria-label="Scroll left"
+            >
+              ‹
+            </button>
+            <button 
+              className="slider-control right"
+              onClick={() => handleScroll('right')}
+              aria-label="Scroll right"
+            >
+              ›
+            </button>
+          </>
+        )}
         <div className='card-list' ref={cardsRef}>
-          {apiData.length === 0 ? (
-            <p>Loading...</p>
-          ) : (
-            apiData.map((card) => (
-              <Link to={`/player/${card.id}`} className='card' key={card.id}>
-                <img
-                  src={
-                    card.backdrop_path
-                      ? 'https://image.tmdb.org/t/p/w500' + card.backdrop_path
-                      : '/path/to/placeholder-image.jpg'
-                  }
-                  alt={card.original_title || card.name || ''}
-                />
-                <p>{card.original_title || card.name || ''}</p>
-              </Link>
-            ))
-          )}
+          {apiData.length === 0 
+            ? Array(6).fill(0).map((_, i) => <LoadingSkeleton key={i} />)
+            : apiData.map((card) => (
+                <Link 
+                  to={`/player/${card.id}`} 
+                  className='card' 
+                  key={card.id}
+                  title={card.original_title || card.name}
+                >
+                  <img
+                    src={card.backdrop_path 
+                      ? `https://image.tmdb.org/t/p/w500${card.backdrop_path}`
+                      : '/path/to/placeholder-image.jpg'}
+                    alt={card.original_title || card.name || ''}
+                    loading="lazy"
+                  />
+                  <p>{card.original_title || card.name || ''}</p>
+                </Link>
+              ))
+          }
         </div>
-        <button 
-          className={`slider-control right ${showControls ? 'show' : ''}`}
-          onClick={() => handleScroll('right')}
-        >
-          ›
-        </button>
       </div>
     </div>
   );
