@@ -7,7 +7,11 @@ import play_icon from '../../assets/play_icon.png'
 import info_icon from '../../assets/info_icon.png'
 import TitleCards from '../../component/TitleCards/TitleCards'
 import Footer from '../../component/Footer/Footer'
+import { useNavigate } from 'react-router-dom';
+
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div className='home'>
       <Navbar />
@@ -19,8 +23,14 @@ const Home = () => {
             จนเกิดเหตุให้เขายอมสละชีวิตเพื่อช่วยวัยรุ่นสองคนที่กำลังจะถูกรถชน หลังตายการเกิดใหม่อีกครั้งในโลกต่างมิติ เขาได้เริ่มต้นชีวิตใหม่อีกครั้งในร่างของ รูเดียส เกรย์แรท
              และตั้งใจจะใช้ชีวิตให้ดียิ่งกว่าเดิม</p>
              <div className="hero-btns">
-                <button className='btn'><img src={play_icon} alt="" />Play</button>
-                <button className='btn dark-btn'><img src={info_icon} alt="" />More Info</button>
+                <button className='btn' onClick={() => navigate('/player/94664')}>
+                  <img src={play_icon} alt="" />
+                  Play
+                </button>
+                <button className='btn dark-btn' onClick={() => window.open('https://mushokutensei.jp/', '_blank')}>
+                  <img src={info_icon} alt="" />
+                  More Info
+                </button>
              </div>
              <TitleCards/>
         </div>
