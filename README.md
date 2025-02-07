@@ -23,11 +23,6 @@ NyankoFLIX is a Netflix-inspired web application that demonstrates modern fronte
 - 🎬 Dynamic content loading
 - 🎥 Video trailer streaming
 
-## 🚀 Technologies Used
-
-- **JavaScript** - Core functionality and interactivity
-- **CSS** - Styling and animations
-- **HTML** - Structure and content
 
 ## Preview
 
