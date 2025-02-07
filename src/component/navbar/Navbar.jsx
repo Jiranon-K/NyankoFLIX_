@@ -4,12 +4,13 @@ import './Navbar.css';
 import logo from '../../assets/logo.png';
 import bell_icon from '../../assets/bell_icon.svg';
 import profile_img from '../../assets/profile_img.png';
-
+import Modal from '../Modal/Modal'; // new import
 
 function Navbar() {  
 
   const NavRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +29,11 @@ function Navbar() {
     };
   }, []);
 
+  const handleUnavailable = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
   return (
     <div ref={NavRef} className='navbar'>
       <div className="navbar-left">
@@ -40,10 +46,10 @@ function Navbar() {
         <ul className={showMenu ? 'show-menu' : ''}>
           <li><Link to="/">หน้าหลัก</Link></li>
           <li><Link to="/Tvshows">รายการทีวี</Link></li>
-          <li><Link to="/movies">ภาพยนต์</Link></li>
-          <li><Link to="/trending">มาใหม่และกำลังฮิต</Link></li>
-          <li><Link to="/mylist">รายการของฉัน</Link></li>
-          <li><Link to="/language">เลือกดูตามภาษา</Link></li>
+          <li><a href="/movies" onClick={handleUnavailable}>ภาพยนต์</a></li>
+          <li><a href="/trending" onClick={handleUnavailable}>มาใหม่และกำลังฮิต</a></li>
+          <li><a href="/mylist" onClick={handleUnavailable}>รายการของฉัน</a></li>
+          <li><a href="/language" onClick={handleUnavailable}>เลือกดูตามภาษา</a></li>
         </ul>
       </div>
       <div className="navbar-right">
@@ -52,6 +58,7 @@ function Navbar() {
           <img src={profile_img} alt="Profile" className='profile' />
         </div>
       </div>
+      {showModal && <Modal onClose={() => setShowModal(false)} />}
     </div>
   );
 }
