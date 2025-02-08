@@ -14,13 +14,26 @@ const Player = () => {
   });
 
   useEffect(() => {
+    console.log(`Fetching video data for TV show ID: ${id}`);
     fetch(`https://api.themoviedb.org/3/tv/${id}/videos?language=ja-JP`, options)
       .then((res) => res.json())
       .then((res) => {
+        console.log('API response:', res);
         if (res.results && res.results.length > 0) {
           setApiData(res.results[0]);
         } else {
           console.error('No video data found.');
+          fetch(`https://api.themoviedb.org/3/tv/${id}/videos?language=en-US`, options)
+            .then((res) => res.json())
+            .then((res) => {
+              if (res.results && res.results.length > 0) {
+                setApiData(res.results[0]);
+              } else {
+                console.error('No video data found in fallback language.');
+                setApiData({ name: 'No video available', key: '' });
+              }
+            })
+            .catch((err) => console.error('Error fetching fallback video data:', err));
         }
       })
       .catch((err) => console.error('Error fetching video data:', err));
@@ -46,7 +59,7 @@ const Player = () => {
           allowFullScreen
         ></iframe>
       ) : (
-        <p>Loading...</p>
+        <p>{apiData.name || 'Loading...'}</p>
       )}
     </div>
   );
