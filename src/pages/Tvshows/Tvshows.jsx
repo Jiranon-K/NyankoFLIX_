@@ -8,10 +8,10 @@ const Tvshows = () => {
     <div className='tvshows'>
       <Navbar />
       <div style={{ marginTop: '80px' }}>
-        <TitleCards title="Action" category="Action" />
-        <TitleCards title="Romance" category="Romance" />
-        <TitleCards title="Comedy" category="Comedy" />
-        <TitleCards title="Coming soon..." category="Horror" />
+        <TitleCards title="ยอดนิยม" category="1" />
+        <TitleCards title="แนะนำ" category="2" />
+        <TitleCards title="เรื่องที่คุณน่าจะชอบ" category="3" />
+        <TitleCards title="เร็วๆ นี้..." category="4" />
       </div>
       <Footer />
     </div>
