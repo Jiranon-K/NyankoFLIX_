@@ -4,10 +4,9 @@ import './Navbar.css';
 import logo from '../../assets/logo.png';
 import bell_icon from '../../assets/bell_icon.svg';
 import profile_img from '../../assets/profile_img.png';
-import Modal from '../Modal/Modal'; // new import
+import Modal from '../Modal/Modal';
 
 function Navbar() {  
-
   const NavRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +21,6 @@ function Navbar() {
     };
 
     window.addEventListener('scroll', handleScroll);
-
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -45,8 +43,8 @@ function Navbar() {
         </div>
         <ul className={showMenu ? 'show-menu' : ''}>
           <li><Link to="/">หน้าหลัก</Link></li>
-          <li><Link to="/Tvshows">รายการทีวี</Link></li>
-          <li><a href="/movies" onClick={handleUnavailable}>ภาพยนต์</a></li>
+          <li><Link to="/tvshows">รายการทีวี</Link></li>
+          <li><Link to="/movies">ภาพยนต์</Link></li>
           <li><a href="/trending" onClick={handleUnavailable}>มาใหม่และกำลังฮิต</a></li>
           <li><a href="/mylist" onClick={handleUnavailable}>รายการของฉัน</a></li>
           <li><a href="/language" onClick={handleUnavailable}>เลือกดูตามภาษา</a></li>
